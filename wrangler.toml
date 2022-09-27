@@ -1,0 +1,16 @@
+name = "queues-demo"
+main = "worker.ts"
+compatibility_date = "2022-09-26"
+
+# Worker defines a binding, named "QUEUE", which gives it a capability
+# to send messages to a Queue, named "my-queue".
+[[queues.producers]]
+  queue = "my-queue"
+  binding = "QUEUE"
+
+# Worker also receives messages from the Queue, named "my-queue".
+[[queues.consumers]]
+  queue = "my-queue"
+  max_batch_size = 10   # Max messages per batch
+  max_batch_timeout = 1 # Max seconds to wait before batch is full
+  max_retries = 3       # Max retries per batch
